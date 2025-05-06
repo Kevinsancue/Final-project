@@ -1,0 +1,68 @@
+package project;
+
+import javax.swing.*;
+
+public class Project3 {
+
+    public static void main(String[] args) {
+        int correctAnswers = 0;
+
+        String[][] questions = {
+            {
+                "What is the prompt when you want to create a project with the imported Scanner module?",
+                "import java.util.Scanner"
+            },
+            {
+                "What was the first public main we learned about?",
+                "public static void main(String[] args)"
+            },
+            {
+                "What's the name of this code type?",
+                "Java"
+            },
+            {
+                "What is often used to read strings in Java?",
+                "Scanner"
+            },
+            {
+                "What is the name of the file that includes your class?",
+                "project"
+            }
+        };
+
+        for (String[] q : questions) {
+            String answer = JOptionPane.showInputDialog(null, q[0]);
+
+            if (answer != null && answer.equalsIgnoreCase(q[1])) {
+                JOptionPane.showMessageDialog(null, "Correct!");
+                correctAnswers++;
+            } else {
+                JOptionPane.showMessageDialog(null, "The correct answer was:\n" + q[1]);
+            }
+        }
+
+        String feedback;
+        switch (correctAnswers) {
+            case 5:
+                feedback = "Couldn't have said it better myself!";
+                break;
+            case 4:
+                feedback = "Not too bad!";
+                break;
+            case 3:
+                feedback = "Not too great.";
+                break;
+            case 2:
+                feedback = "Gotta hit the books friend.";
+                break;
+            case 1:
+            	feedback= "When I say hit the books, I mean read";
+            	break;
+            default:
+                feedback = "I got nothing man, just try again";
+                break;
+        }
+
+        JOptionPane.showMessageDialog(null, "All done! You managed to get " + correctAnswers + "/5 correct.\n" + feedback);
+    }
+}
