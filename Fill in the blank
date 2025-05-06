@@ -1,0 +1,45 @@
+package project;
+
+import javax.swing.*;
+
+public class Project {
+
+    public static void main(String[] args) {
+        int correctCount = 0;
+
+        String[][] questions = {
+            {"public static _____ main(String[] args) {", "void"},
+            {"If you wish to bring over certain information of a variable from elsewhere what do you use?", "import"},
+            {"To create a Scanner object, use: Scanner scnr = new _____(System.in);", "Scanner"}
+        };
+
+        for (String[] q : questions) {
+            String answer = JOptionPane.showInputDialog(null, q[0]);
+
+            if (answer == null || answer.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Come back when you're ready to try again.");
+                return;
+            }
+
+            if (answer.trim().equalsIgnoreCase(q[1])) {
+                JOptionPane.showMessageDialog(null, "Correct!");
+                correctCount++;
+            } else {
+                JOptionPane.showMessageDialog(null, " Wrong. The correct answer was:\n" + q[1]);
+            }
+        }
+
+        String feedback;
+        if (correctCount == questions.length) {
+            feedback = "Now that's a good score!";
+        } else if (correctCount == questions.length - 1) {
+            feedback = "Eh, 2 out of 3's not bad!";
+        } else if (correctCount >= 1) {
+            feedback = "Not a complete loss";
+        } else {
+            feedback = "Bruh.";
+        }
+
+        JOptionPane.showMessageDialog(null, "End of the assignment! You got " + correctCount + "/" + questions.length + " correct.\n" + feedback);
+    }
+}
