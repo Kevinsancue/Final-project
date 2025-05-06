@@ -1,0 +1,69 @@
+package project;
+
+import javax.swing.*;
+
+public class Project2 {
+
+    public static void main(String[] args) {
+        String[][] questions = {
+            {"What does \"hello\".length() return?", "*a) 5", "b) 4", "c) 6"},
+            {"Output of \"java\".toUpperCase()?", "*a) JAVA", "b) java", "c) Java"},
+            {"Does \"Hello\".equals(\"hello\") return?", "a) true", "*b) false", "c) Error"},
+            {"What is the usual abbreviation of Scanner?", "a)Scaner", "b) SCANNER", "*c)scnr"},
+            {"What class has the name of your project?", "*a)public class", "b) banana", "c)Public class"},
+        };
+
+        int score = 0;
+
+        for (String[] q : questions) {
+            String correct = "";
+            String[] choices = new String[3];
+            for (int i = 0; i < 3; i++) {
+                if (q[i + 1].startsWith("*")) {
+                    correct = q[i + 1].substring(1, 2); 
+                    choices[i] = q[i + 1].substring(1); 
+                } else {
+                    choices[i] = q[i + 1];
+                }
+            }
+
+            String answer = (String) JOptionPane.showInputDialog(
+                null,
+                q[0],
+                "Quiz Question",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                choices,
+                choices[0]
+            );
+
+            if (answer != null && answer.startsWith(correct)) {
+                score++;
+            }
+        }
+
+        String feedback;
+        switch (score) {
+            case 5:
+                feedback = "Absolute cinema";
+                break;
+            case 4:
+                feedback = "Not too bad!";
+                break;
+            case 3:
+                feedback = "About average.";
+                break;
+            case 2:
+                feedback = "Could maybe use some studying.";
+                break;
+            case 1:
+                feedback = "Can definitely use some studying";
+                break;
+            default:
+                feedback = "I don't think you can get this message unless you do it on purpose";
+                break;
+        }
+
+        JOptionPane.showMessageDialog(null, "Your result " + score + " out of " + questions.length + "!\n" + feedback);
+    }
+}
